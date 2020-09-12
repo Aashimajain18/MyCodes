@@ -31,7 +31,7 @@ public:
 			return i;
 
 		}
-		return parent[i] = findSet(parent[i], parent);; //just added this for path compression optimization
+		return parent[i] = findSet(parent[i], parent); //just added this for path compression optimization
 	}
 	//DSU UNION by rank
 	//time complexity=O(1)
