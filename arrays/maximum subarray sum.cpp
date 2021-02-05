@@ -107,6 +107,7 @@ int32_t main()
 	//METHOD 3:
 	//time complexity o(n)
 	//kadane's algorithm
+	//works only if max subarray sum is positive
 
 	int n;
 	cin >> n;
@@ -131,5 +132,21 @@ int32_t main()
 
 	return 0;
 }
+
+//method 4
+//dp
+//works on negative numbers as well
+int maxSubArraySum(int a[], int size) 
+{ 
+   int max_so_far = a[0]; 
+   int curr_max = a[0]; 
+  
+   for (int i = 1; i < size; i++) 
+   { 
+        curr_max = max(a[i], curr_max+a[i]); 
+        max_so_far = max(max_so_far, curr_max); 
+   } 
+   return max_so_far; 
+} 
 
 
