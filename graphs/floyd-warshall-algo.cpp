@@ -55,10 +55,10 @@ int32_t main() {
 	//4 vertices
 	//4x4 matrix
 	vector<vector<int> > graph = {
-		{0, INT_MAX, -2, INT_MAX},
-		{4, 0, 3, INT_MAX},
-		{INT_MAX, INT_MAX, 0, 2},
-		{INT_MAX, -1, INT_MAX, 0}
+		{0, INF, -2, INF},
+		{4, 0, 3, INF},
+		{INF, INF, 0, 2},
+		{INF, -1, INF, 0}
 	};
 
 	auto result = floyd_warshall(graph);
