@@ -46,6 +46,9 @@ The number of nodes in the tree will be in the range [0, 104].
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+//level order traversal
+//bfs solution
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
@@ -71,6 +74,46 @@ public:
             }
               ans.push_back(maxi);
         }
+        return ans;
+    }
+};
+
+
+
+//dfs solution
+//my solution
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+ vector<int>ans;
+    void dfs(TreeNode*root,int level){
+        if(root==NULL) {
+            return;
+        }
+        if(ans.size()==level){
+            //push first element of each row so that it can be changed later if required
+            ans.push_back(root->val);
+        }
+        if(ans[level]<root->val) {
+            ans[level]=root->val;
+        }
+        dfs(root->left,level+1);
+        dfs(root->right,level+1);
+        return;
+    }
+    
+    vector<int> largestValues(TreeNode* root) {
+        dfs(root,0);
         return ans;
     }
 };
