@@ -68,7 +68,7 @@ public:
         //     cout<<arr[i];
         // }
         return build_height_balanced_treefrom_array(arr,0,arr.size()-1);
-        // return root;
+        
     }
 };
 
