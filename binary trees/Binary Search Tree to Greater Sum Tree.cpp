@@ -1,5 +1,6 @@
 /*
-Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST.
+Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to 
+the original key plus sum of all keys greater than the original key in BST.
 
 As a reminder, a binary search tree is a tree that satisfies these constraints:
 
@@ -38,7 +39,7 @@ root is guaranteed to be a valid binary search tree.
 
 */
 
-//My solution
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -50,6 +51,9 @@ root is guaranteed to be a valid binary search tree.
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+//My solution
+//recusive
 class Solution {
 public:
     void bst_Gst(TreeNode* root,int &value) {
@@ -70,3 +74,38 @@ public:
         return root;
     }
 };
+
+
+//iterative
+class Solution {
+public:    
+    TreeNode* bstToGst(TreeNode* root) {
+        TreeNode* node = root;
+        stack<TreeNode*> st;
+        while(node) {
+            st.push(node);
+            node = node->right;
+        }
+        int sum = 0;
+        while(!st.empty()) {
+            TreeNode* node = st.top();
+            node->val += sum;
+            sum = node->val;
+            st.pop();
+            if(node->left) {
+                node = node->left;
+                while(node) {
+                    st.push(node);
+                    node = node->right;
+                }
+            }
+        }
+        return root;
+    }
+};
+
+/*
+Iterating over the TreeNode in Reversed Inorder Traversal, i.e (root->right => root => root->left) and storing sum till the node processed. 
+Then, updating the sum for every TreeNode in question with the updated node->val. And finally returning the root node;
+
+*/
