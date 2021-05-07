@@ -247,7 +247,7 @@ HBpair isHeightBalance(node* root) {
 }
 
 
-node* buildtreefrom_array(int *a, int s, int e) {
+node* build_height_balanced_treefrom_array(int *a, int s, int e) {
     if (s > e) {
         return NULL;
     }
@@ -255,8 +255,8 @@ node* buildtreefrom_array(int *a, int s, int e) {
     int mid = (s + e) / 2;
 
     node* root = new node(a[mid]);
-    root->left = buildtreefrom_array(a, s, mid - 1);
-    root->right = buildtreefrom_array(a, mid + 1, e);
+    root->left = build_height_balanced_treefrom_array(a, s, mid - 1);
+    root->right =build_height_balanced_treefrom_array(a, mid + 1, e);
     return root;
 }
 
